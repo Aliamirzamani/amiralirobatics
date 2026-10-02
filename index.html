@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>امیرعلی رباتیک — AmirAli Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="logo"><i>🤖</i>امیرعلی رباتیک</div>
+<nav aria-label="بخش‌های اصلی">
+<button data-s="home" class="on"><b>🏠</b>خانه</button><button data-s="sim"><b>🕹️</b>شبیه‌ساز</button><button data-s="quest"><b>🎓</b>دوره‌ها</button><button data-s="parent"><b>👨‍👩‍👧</b>والدین</button><button data-s="shop"><b>🛒</b>فروشگاه</button>
+</nav><button class="help" id="helpBtn" aria-label="راهنمای دکمه‌ها">؟</button></header>
+<main>
+
+<section id="home" class="on">
+<div class="hero">
+<div>
+<span class="chip" style="background:#fff;color:var(--b)">آزمون سطح‌سنجی رایگان</span>
+<h1 style="margin-top:10px">آموزش تعاملی رباتیک برای <em>نسل جدید</em></h1>
+<p>ربات بساز، برنامه بنویس و با ویدیو و کلاس آنلاین یاد بگیر. اول سطحت را بسنج، بعد مسیر مناسب را انتخاب کن.</p>
+<div class="cta"><button class="btn" data-go="signup">ثبت‌نام و آزمون رایگان</button><button class="btn ghost" data-go="sim">امتحان شبیه‌ساز</button></div>
+<div class="stats"><span>🎬 ویدیو در همهٔ پلن‌ها</span><span>👩‍🏫 کلاس آنلاین</span><span>🧰 کیت واقعی</span></div>
+</div>
+<svg viewBox="0 0 220 200" aria-hidden="true"><ellipse cx="110" cy="188" rx="70" ry="8" fill="#000" opacity=".18"/><rect x="108" y="14" width="5" height="26" fill="#fff"/><circle cx="110" cy="12" r="9" fill="#ffc233"/><rect x="40" y="40" width="140" height="110" rx="34" fill="#fff"/><rect x="58" y="60" width="104" height="60" rx="22" fill="#0d1b3d"/><circle cx="87" cy="90" r="11" fill="#12c47a"/><circle cx="133" cy="90" r="11" fill="#12c47a"/><path d="M94 108Q110 118 126 108" stroke="#ff3d8b" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="18" y="74" width="16" height="42" rx="8" fill="#ff3d8b"/><rect x="186" y="74" width="16" height="42" rx="8" fill="#ff3d8b"/><rect x="72" y="150" width="28" height="30" rx="10" fill="#0d1b3d"/><rect x="120" y="150" width="28" height="30" rx="10" fill="#0d1b3d"/></svg>
+</div>
+<h2>مسیر شروع، فقط ۴ قدم</h2>
+<div class="grid">
+<div class="card"><div class="ico">📝</div><h3>۱. ثبت‌نام</h3><p>نام و شماره تماس، حدود ۱۰ ثانیه.</p></div>
+<div class="card"><div class="ico b">🧩</div><h3>۲. آزمون رایگان</h3><p>۶ سؤال چهارگزینه‌ای.</p></div>
+<div class="card"><div class="ico y">🎯</div><h3>۳. سطح تو</h3><p>نتیجه و پلن پیشنهادی.</p></div>
+<div class="card"><div class="ico p">🏆</div><h3>۴. شروع یادگیری</h3><p>ویدیو، شبیه‌ساز و ماموریت.</p></div>
+</div>
+<h2>پلن‌های آموزشی</h2>
+<div class="grid" id="hp"></div>
+<div class="band"><div><h3 style="font-size:20px">آماده‌ای؟ آزمون رایگان است</h3><p style="margin:0;color:#e3ebff">بعد از آزمون، پلن مناسب سطحت را می‌بینی.</p></div><button class="btn" data-go="signup">شروع آزمون رایگان</button></div>
+</section>
+
+<section id="sim">
+<h2 style="margin-top:6px">شبیه‌ساز ربات</h2>
+<div class="sim">
+<div class="stage">
+<svg viewBox="0 0 320 260" aria-label="بازوی رباتیک">
+<defs><pattern id="gr" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#7d93ff" stroke-opacity=".22"/></pattern></defs>
+<rect width="320" height="260" fill="url(#gr)"/>
+<polygon points="0,225 320,225 320,260 0,260" fill="#071236"/>
+<rect x="238" y="195" width="30" height="30" rx="6" fill="#ffc233"/>
+<rect x="122" y="205" width="76" height="20" rx="8" fill="#3a5bff"/>
+<g id="a1" transform="translate(160 205) rotate(0)"><rect x="-10" y="-80" width="20" height="86" rx="10" fill="#12c47a"/><circle r="12" fill="#ff3d8b"/>
+<g id="a2" transform="translate(0 -78) rotate(0)"><rect x="-9" y="-70" width="18" height="76" rx="9" fill="#12c47a"/><circle r="11" fill="#ff3d8b"/>
+<g transform="translate(0 -68)"><path id="claw" d="M-14 -4 L-14 -22 M14 -4 L14 -22 M-14 -4 H14" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none"/></g></g></g>
+</svg>
+</div>
+<div class="card">
+<h3>کنترل ربات</h3><p>ماموریت: مکعب زرد را بردار.</p>
+<label>پایه <input id="r1" type="range" min="-70" max="70" value="0"></label>
+<label>بازو <input id="r2" type="range" min="-100" max="100" value="0"></label>
+<label>گیره <input id="r3" type="range" min="0" max="100" value="50"></label>
+<div class="row" style="margin:14px 0"><span>وضعیت</span><span class="chip p" id="simst">در حال انجام</span></div>
+<button class="btn p" id="chk">بررسی حرکت</button> <button class="btn o" id="rst">بازنشانی</button>
+</div></div>
+</section>
+
+<section id="quest">
+<h2 style="margin-top:6px">سلام <span class="nm">دوست رباتیکی</span> 👋</h2>
+<div class="card row" style="margin-bottom:14px"><span>سطح تو: <b id="lv">ثبت‌نام نکرده‌ای</b> · پلن: <b id="pl">—</b></span><button class="btn o" data-go="signup" id="mineBtn">شروع آزمون رایگان</button></div>
+<h2>پیشرفت من</h2>
+<div class="grid">
+<div class="card"><div class="ico y">⭐</div><h3>سطح ۷ · مهندس نقره‌ای</h3><div class="bar" style="margin:10px 0"><i style="width:72%"></i></div><p>۱۴۴۰ از ۲۰۰۰ امتیاز تا سطح بعد</p></div>
+<div class="card"><div class="ico p">🔥</div><h3>۵ روز پیاپی</h3><p>امروز هم ماموریت بزن تا زنجیره نشکند.</p></div>
+<div class="card"><div class="ico b">🏅</div><h3>نشان‌ها</h3><p>سنسورساز · اولین برنامه · مسیریاب</p></div>
+</div>
+<h2>دوره‌های من</h2>
+<div class="grid" id="cs"></div>
+<h2>تکلیف و ماموریت‌های فعال</h2>
+<div class="grid" id="qs"></div>
+</section>
+
+<section id="parent">
+<h2 style="margin-top:6px">داشبورد والدین · <span class="nm">سارا</span></h2>
+<div class="grid">
+<div class="card"><div class="ico">⏱️</div><h3>زمان یادگیری این هفته</h3><p class="big">۴ ساعت و ۲۰ دقیقه</p><span class="chip">۱۲٪ بیشتر از هفته قبل</span></div>
+<div class="card"><div class="ico b">✅</div><h3>ماموریت کامل‌شده</h3><p class="big">۹ ماموریت</p><span class="chip b">۲ تکلیف تحویل‌شده</span></div>
+</div>
+<div class="card" style="margin-top:14px"><h3>مهارت‌های یادگرفته‌شده</h3>
+<div class="row"><span>برنامه‌نویسی بلوکی</span><b>۸۰٪</b></div><div class="bar"><i style="width:80%"></i></div>
+<div class="row"><span>سنسورها</span><b>۶۰٪</b></div><div class="bar b"><i style="width:60%"></i></div>
+<div class="row"><span>مکانیک و ساخت</span><b>۴۰٪</b></div><div class="bar p"><i style="width:40%"></i></div></div>
+<div class="card" style="margin-top:14px"><h3>فعالیت اخیر</h3><p>دیروز «ربات مسیریاب» را کامل کرد · سه‌شنبه در کلاس آنلاین شرکت کرد.</p><button class="btn o" data-toast="گزارش PDF آماده شد">دریافت گزارش</button></div>
+</section>
+
+<section id="shop">
+<h2 style="margin-top:6px">فروشگاه</h2>
+<div class="tabs"><button class="on" data-f="all">همه</button><button data-f="hw">کیت فیزیکی</button><button data-f="dg">دوره و محصول دیجیتال</button></div>
+<div class="grid" id="kits"></div>
+<div class="card" style="margin-top:14px"><h3>پرداخت کارت‌به‌کارت</h3><p>بعد از واریز، عکس فیش را بارگذاری کن. سفارش بعد از تأیید مدیر فعال می‌شود.</p><button class="btn p" data-toast="فیش دریافت شد · در انتظار تأیید مدیر">بارگذاری فیش</button></div>
+</section>
+
+
+<section id="signup" class="flow">
+<ol class="stp" data-n="0"></ol>
+<div class="card form"><div class="ico">📝</div><h2 style="margin-top:0">ثبت‌نام سریع</h2><p>بدون پرداخت · حدود ۳ دقیقه تا دیدن سطح</p>
+<label for="fn">نام و نام خانوادگی</label><input id="fn" autocomplete="name" placeholder="مثلاً سارا احمدی">
+<small class="err" id="e1" aria-live="polite"></small>
+<label for="ph">شماره تماس</label><input id="ph" inputmode="tel" autocomplete="tel" placeholder="09123456789" dir="ltr" style="text-align:right">
+<small class="err" id="e2" aria-live="polite"></small>
+<button class="btn" id="goQuiz" style="width:100%;margin-top:18px">شروع آزمون رایگان</button>
+<button class="btn o" data-go="home" style="width:100%;margin-top:12px">بازگشت</button></div>
+</section>
+
+<section id="quiz" class="flow">
+<ol class="stp" data-n="1"></ol>
+<div class="card form"><div class="row"><b id="qn"></b><span class="chip b">آزمون رایگان</span></div><div class="bar b"><i id="qb" style="width:0"></i></div>
+<h2 id="qt" style="margin-top:16px"></h2><div id="qo" role="radiogroup"></div>
+<div class="row" style="margin-top:14px"><button class="btn o" id="qback">قبلی</button><button class="btn" id="qnext" disabled>بعدی</button></div></div>
+</section>
+
+<section id="result" class="flow">
+<ol class="stp" data-n="2"></ol>
+<div class="card form" style="text-align:center"><div class="ico y" style="margin-inline:auto;width:70px;height:70px;font-size:38px" id="rI">🏅</div>
+<p>نتیجهٔ آزمون <span class="nm"></span></p><h1 id="rL" style="font-size:36px"></h1><p class="big" id="rS"></p><p id="rD"></p>
+<div class="card" style="background:var(--bs);box-shadow:none"><h3>پلن پیشنهادی ما</h3><b id="rP"></b></div>
+<button class="btn" data-go="plans" style="width:100%;margin-top:16px">دیدن پلن‌های آموزشی</button></div>
+</section>
+
+<section id="plans" class="flow">
+<ol class="stp" data-n="3"></ol>
+<h2 style="margin-top:6px">یک پلن انتخاب کن</h2><p>سه پلن برای سه سرعت یادگیری. هر ماه می‌توانی پلن را عوض کنی.</p>
+<div class="grid" id="pg"></div>
+<button class="btn o" data-go="quest" style="margin-top:16px">فعلاً رد می‌کنم</button>
+</section>
+</main>
+<div class="tour" id="tour" role="dialog" aria-modal="true" aria-label="راهنمای دکمه‌ها"><div class="card"><div class="ico" id="tI">🧭</div><h3 id="tT"></h3><p id="tD"></p><div class="row"><span id="tS" class="chip b"></span><span><button class="btn o" id="tX">بستن</button> <button class="btn" id="tN">بعدی</button></span></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
