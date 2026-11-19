@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>پنل مدیریت | امیرعلی رباتیک</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+<header><a class="logo" href="index.html"><img src="logo.jpg" alt="">امیرعلی رباتیک</a><a class="admin-back" href="index.html">بازگشت به سایت</a></header>
+<main class="admin-main">
+<section class="admin-login" id="loginView">
+<div class="admin-mark">🔐</div><span class="chip">دسترسی مدیر</span><h1>ورود به پنل مدیریت</h1><p>شمارهٔ مدیر و رمز عبور را وارد کن.</p>
+<form id="adminLogin" novalidate>
+<label for="adminPhone">شمارهٔ تلفن</label><input id="adminPhone" name="phone" autocomplete="username" inputmode="tel" dir="ltr" required>
+<label for="adminPassword">رمز عبور</label><input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+<p class="admin-error" id="loginError" role="alert"></p><button class="btn" id="loginButton" type="submit">ورود امن</button>
+</form><small>ورود از سمت سرور بررسی می‌شود؛ اطلاعات ورود داخل فایل‌های سایت ذخیره نشده است.</small>
+</section>
+<section class="admin-panel" id="panelView" hidden>
+<div class="admin-welcome"><div><span class="chip">پنل مدیریت</span><h1>خوش آمدی</h1><p>از اینجا می‌توانی بخش‌های مدیریتی سایت را پیگیری کنی.</p></div><button class="btn o" id="logoutButton" type="button">خروج امن</button></div>
+<div class="grid admin-cards"><article class="card"><div class="ico b">👩‍🎓</div><h2>هنرجویان</h2><p>مدیریت حساب‌ها و دسترسی دوره‌ها</p><span class="admin-status">نیازمند اتصال پایگاه داده</span></article><article class="card"><div class="ico y">🧾</div><h2>سفارش‌ها</h2><p>بررسی پرداخت و فعال‌سازی دوره</p><span class="admin-status">نیازمند درگاه و پایگاه داده</span></article><article class="card"><div class="ico p">📚</div><h2>دوره‌ها و محتوا</h2><p>مدیریت درس‌ها، ویدیوها و تمرین‌ها</p><span class="admin-status">نیازمند API مدیریتی</span></article></div>
+<div class="card admin-next"><h2>ورود با موفقیت انجام شد</h2><p>احراز هویت این پنل سمت سرور انجام می‌شود. برای کارکردن مدیریت هنرجوها، سفارش‌ها و دوره‌ها باید API و پایگاه داده نیز به پروژه وصل شوند.</p></div>
+</section>
+</main>
+<script src="admin.js" defer></script>
+</body>
+</html>

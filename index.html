@@ -10,8 +10,8 @@
 <body>
 <header><div class="logo"><img src="logo.jpg" alt="نشان ربات امیرعلی رباتیک">امیرعلی رباتیک</div>
 <nav aria-label="بخش‌های اصلی">
-<button data-s="home" class="on"><b>🏠</b>خانه</button><button data-s="quest"><b>🎓</b>دوره‌ها</button><button data-s="shop"><b>🛒</b>فروشگاه</button>
-</nav><div class="header-actions"><button class="help" id="helpBtn" aria-label="راهنما و اطلاعات" title="راهنما و اطلاعات"><span aria-hidden="true">ⓘ</span><span>راهنما</span></button></div></header>
+<button data-s="home" class="on"><b>🏠</b>خانه</button><button data-s="shop"><b>🛒</b>فروشگاه</button><button data-s="articles"><b>📰</b>مقالات</button><button data-s="about"><b>👋</b>من کیستم</button><button data-s="robotics"><b>🤖</b>رباتیک چیست؟</button>
+</nav><div class="header-actions"><a class="student-entry" href="learner.html">ورود هنرجو</a><button class="help" id="helpBtn" aria-label="راهنما و اطلاعات" title="راهنما و اطلاعات"><span aria-hidden="true">ⓘ</span><span>راهنما</span></button></div></header>
 <main>
 
 <section id="home" class="on">
@@ -20,7 +20,7 @@
 <span class="chip" style="background:#fff;color:var(--b)">آزمون سطح‌سنجی رایگان</span>
 <h1 style="margin-top:10px">آموزش تعاملی رباتیک برای <em>نسل جدید</em></h1>
 <p>ربات بساز، برنامه بنویس و با ویدیو و کلاس آنلاین یاد بگیر. اول سطحت را بسنج، بعد مسیر مناسب را انتخاب کن.</p>
-<div class="cta"><button class="btn" data-go="signup">ثبت‌نام و آزمون رایگان</button><button class="btn ghost" data-go="quest">دیدن دوره‌ها</button></div>
+<div class="cta"><button class="btn" data-go="signup">ثبت‌نام و آزمون رایگان</button><button class="btn ghost" data-go="shop">دیدن فروشگاه</button></div>
 <div class="stats"><span>🎬 ویدیو در همهٔ پلن‌ها</span><span>👩‍🏫 کلاس آنلاین</span><span>🧰 کیت واقعی</span></div>
 </div>
 <div class="hero-logo"><img src="logo.jpg" alt="لوگوی امیرعلی رباتیک؛ رباتی خلاق در مسیر یادگیری" fetchpriority="high"></div>
@@ -36,6 +36,13 @@
 <div class="grid" id="hp"></div>
 <div class="band"><div><h3 style="font-size:20px">آماده‌ای؟ آزمون رایگان است</h3><p style="margin:0;color:#e3ebff">بعد از آزمون، پلن مناسب سطحت را می‌بینی.</p></div><button class="btn" data-go="signup">شروع آزمون رایگان</button></div>
 </section>
+
+<section id="articles">
+<span class="chip">مجلهٔ امیرعلی رباتیک</span><h1>مقالات و ایده‌های رباتیکی</h1><p>مطالب ساده و کاربردی برای شروع ساختن، برنامه‌نویسی و یادگیری رباتیک.</p>
+<div class="grid"><article class="card"><div class="ico b">🤖</div><span class="chip b">شروع یادگیری</span><h2>رباتیک را از کجا شروع کنیم؟</h2><p>با شناخت قطعات پایه، کمی تمرین برنامه‌نویسی و یک پروژهٔ کوچک می‌توانی قدم‌به‌قدم اولین رباتت را بسازی.</p></article><article class="card"><div class="ico y">🔧</div><span class="chip">پروژه</span><h2>۵ قطعهٔ مهم در یک ربات ساده</h2><p>موتور، برد کنترل، باتری و حسگرها هرکدام نقش متفاوتی دارند. آشنایی با آن‌ها ساخت پروژه را آسان‌تر می‌کند.</p></article><article class="card"><div class="ico p">💡</div><span class="chip b">برنامه‌نویسی</span><h2>حسگرها چطور به ربات کمک می‌کنند؟</h2><p>حسگرها اطلاعاتی از محیط می‌گیرند تا ربات بتواند تصمیم بگیرد و واکنش مناسب نشان دهد.</p></article></div>
+</section>
+<section id="about"><div class="hero"><div><span class="chip" style="background:#fff;color:var(--b)">داستان ما</span><h1 style="margin-top:10px">من کیستم؟</h1><p>من امیرعلی‌ام؛ علاقه‌مند به رباتیک و آموزش خلاقانه. اینجا را ساخته‌ام تا بچه‌ها با تجربه و پروژه‌های واقعی، دنیای فناوری را کشف کنند.</p><button class="btn" data-go="shop">آشنایی با محصولات</button></div><div class="hero-logo"><img src="logo.jpg" alt="لوگوی امیرعلی رباتیک"></div></div></section>
+<section id="robotics"><span class="chip">یادگیری از پایه</span><h1>رباتیک چیست؟</h1><p>رباتیک ترکیبی از مهندسی، الکترونیک و برنامه‌نویسی است؛ با آن ماشین‌هایی می‌سازیم که محیط را حس می‌کنند، تصمیم می‌گیرند و کاری انجام می‌دهند.</p><div class="grid"><article class="card"><div class="ico b">🧠</div><h2>برنامه‌نویسی</h2><p>به ربات می‌گوییم چه کاری را، در چه زمانی انجام دهد.</p></article><article class="card"><div class="ico y">👀</div><h2>حسگرها</h2><p>ربات با حسگرها نور، فاصله یا مسیر را تشخیص می‌دهد.</p></article><article class="card"><div class="ico p">⚙️</div><h2>ساخت و آزمایش</h2><p>قطعات را کنار هم می‌گذاریم، نتیجه را می‌بینیم و بهترش می‌کنیم.</p></article></div><div class="band"><div><h3 style="font-size:20px">آماده‌ای یک پروژه بسازی؟</h3><p style="margin:0;color:#e3ebff">از فروشگاه با کیت‌ها و دوره‌ها آشنا شو.</p></div><button class="btn" data-go="shop">رفتن به فروشگاه</button></div></section>
 
 <section id="quest">
 <h2 style="margin-top:6px">سلام <span class="nm">دوست رباتیکی</span> 👋</h2>
@@ -104,10 +111,10 @@
 <ol class="stp" data-n="3"></ol>
 <h2 style="margin-top:6px">یک پلن انتخاب کن</h2><p>سه پلن برای سه سرعت یادگیری. هر ماه می‌توانی پلن را عوض کنی.</p>
 <div class="grid" id="pg"></div>
-<button class="btn o" data-go="quest" style="margin-top:16px">فعلاً رد می‌کنم</button>
+<button class="btn o" data-go="home" style="margin-top:16px">فعلاً رد می‌کنم</button>
 </section>
 </main>
-<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><img src="logo.jpg" alt=""><div><b>امیرعلی رباتیک</b><p>با ساختن ربات، یادگیری را تجربه کن.</p></div></div><div class="footer-links"><button data-go="home">خانه</button><button data-go="quest">دوره‌های هنرجو</button><button data-go="parent">داشبورد والدین</button><button data-go="shop">فروشگاه</button><button id="footerHelp">راهنما و اطلاعات</button></div><small>© امیرعلی رباتیک · آموزش خلاقانهٔ رباتیک</small></div></footer>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><img src="logo.jpg" alt=""><div><b>امیرعلی رباتیک</b><p>با ساختن ربات، یادگیری را تجربه کن.</p></div></div><div class="footer-links"><button data-go="home">خانه</button><button data-go="articles">مقالات</button><button data-go="about">من کیستم</button><button data-go="robotics">رباتیک چیست؟</button><a href="learner.html">ورود هنرجو</a><a href="admin.html">پنل مدیریت</a><button data-go="parent">داشبورد والدین</button><button data-go="shop">فروشگاه</button><button id="footerHelp">راهنما و اطلاعات</button></div><small>© امیرعلی رباتیک · آموزش خلاقانهٔ رباتیک</small></div></footer>
 <div class="cart-overlay" id="cartOverlay" aria-hidden="true"><section class="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1"><div class="cart-heading"><div><span class="cart-kicker">خریدهای تو</span><h2 id="cartTitle">سبد خرید</h2></div><button class="cart-close" id="cartClose" aria-label="بستن سبد خرید">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-empty" id="cartEmpty"><span>🛍️</span><b>سبدت هنوز خالی است</b><p>از فروشگاه یک کیت یا دوره انتخاب کن.</p><button class="btn" id="browseShop">رفتن به فروشگاه</button></div><div class="cart-summary" id="cartSummary" hidden><div><span>جمع کالاها</span><b id="cartTotal"></b></div><button class="btn p" id="checkoutBtn">ادامهٔ خرید</button><small>پرداخت آنلاین در نسخهٔ فعلی فعال نیست.</small></div></section></div>
 <div class="tour" id="tour" role="dialog" aria-modal="true" aria-label="راهنمای دکمه‌ها"><div class="card"><div class="ico" id="tI">🧭</div><h3 id="tT"></h3><p id="tD"></p><div class="row"><span id="tS" class="chip b"></span><span><button class="btn o" id="tX">بستن</button> <button class="btn" id="tN">بعدی</button></span></div></div></div>
 <div class="toast" id="toast" role="status"></div>

@@ -7,7 +7,7 @@ document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g
 const C=[['رباتیک مقدماتی','جلسه ۶ از ۱۰',60,'','کلاس آنلاین: پنجشنبه ۱۷:۰۰'],['برنامه‌نویسی آردوینو','جلسه ۲ از ۸',25,'b','جلسهٔ بعد: ۱۲ مهر باز می‌شود']];
 $('#cs').innerHTML=C.map(c=>`<div class="card"><div class="ico ${c[3]}">🎓</div><h3>${c[0]}</h3><p>${c[1]}</p><div class="bar ${c[3]}"><i style="width:${c[2]}%"></i></div><div class="row"><span class="chip ${c[3]||''}">${c[4]}</span></div></div>`).join('');
 const Q=[['مسیریاب ماهر','ربات را از مسیر پرپیچ‌وخم عبور بده',70,'p','🧭'],['تکلیف سنسور نور','فایل پروژه را بارگذاری کن · مهلت: ۳ روز',35,'b','📎'],['رقص ربات','یک برنامه ۱۰ بلوکی بنویس',10,'','💃']];
-$('#qs').innerHTML=Q.map(q=>`<div class="card"><div class="ico ${q[3]}">${q[4]}</div><h3>${q[0]}</h3><p>${q[1]}</p><div class="bar ${q[3]}"><i style="width:${q[2]}%"></i></div><div class="row"><b>${q[2]}٪</b><button class="btn o" data-go="quest">دیدن دوره‌ها</button></div></div>`).join('');
+$('#qs').innerHTML=Q.map(q=>`<div class="card"><div class="ico ${q[3]}">${q[4]}</div><h3>${q[0]}</h3><p>${q[1]}</p><div class="bar ${q[3]}"><i style="width:${q[2]}%"></i></div><div class="row"><b>${q[2]}٪</b><a class="btn o" href="learner.html">ورود به فضای هنرجو</a></div></div>`).join('');
 const K=[
  {id:'robot-arm',name:'کیت بازوی رباتیک',icon:'🦾',price:1280000,type:'hw',color:'var(--gs)'},
  {id:'sensors',name:'کیت سنسورها',icon:'📡',price:890000,type:'hw',color:'var(--bs)'},
@@ -69,7 +69,7 @@ drawPlans();
 const _s2=show;show=function(id){if(id==='plans')drawPlans();_s2(id)};
 $('#pg').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;st.plan=+b.dataset.pick;$('#pl').textContent=PL[st.plan].n+' '+PL[st.plan].i;
  if(st.lvl!==null){$('#lv').textContent=LV[st.lvl].n+' '+LV[st.lvl].i;$('#mineBtn').textContent='تغییر پلن';$('#mineBtn').dataset.go='plans'}
- show('quest');toast('پلن '+PL[st.plan].n+' فعال شد');if(!localStorage_ok('seen'))setTimeout(()=>tour(0),600)};
+ show('plans');toast('پلن انتخاب شد؛ برای فعال‌سازی باید پرداخت آنلاین راه‌اندازی شود')};
 $('#result').addEventListener('click',()=>{if(st.lvl!==null){$('#lv').textContent=LV[st.lvl].n+' '+LV[st.lvl].i;$('#mineBtn').textContent='تغییر پلن';$('#mineBtn').dataset.go='plans'}});
 function localStorage_ok(k){try{if(localStorage.getItem(k))return true;localStorage.setItem(k,1)}catch(e){}return false}
 const TS=[['🧭','منوی بخش‌ها','از منوی بالا به خانه، دوره‌ها و فروشگاه برو؛ داشبورد والدین در پیوند فوتر است.'],['🛒','سبد خرید','در فروشگاه کالاها را اضافه کن، تعدادشان را تغییر بده و جمع قیمت را ببین.'],['🔍','جست‌وجوی فروشگاه','نام کیت یا دوره را جست‌وجو کن یا دسته‌بندی را فیلتر کن.'],['ⓘ','راهنما و اطلاعات','هر وقت لازم داشتی، از دکمهٔ راهنما یا پیوند فوتر استفاده کن.']];
