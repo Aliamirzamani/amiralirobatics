@@ -10,8 +10,8 @@
 <body>
 <header><div class="logo"><img src="logo.jpg" alt="نشان ربات امیرعلی رباتیک">امیرعلی رباتیک</div>
 <nav aria-label="بخش‌های اصلی">
-<button data-s="home" class="on"><b>🏠</b>خانه</button><button data-s="sim"><b>🕹️</b>شبیه‌ساز</button><button data-s="quest"><b>🎓</b>دوره‌ها</button><button data-s="parent"><b>👨‍👩‍👧</b>والدین</button><button data-s="shop"><b>🛒</b>فروشگاه</button>
-</nav><div class="header-actions"><button class="cart-toggle" id="cartBtn" aria-label="سبد خرید، ۰ کالا" aria-haspopup="dialog" aria-expanded="false"><span aria-hidden="true">🛒</span><span class="cart-label">سبد خرید</span><b class="cart-count" id="cartCount" aria-live="polite">۰</b></button><button class="help" id="helpBtn" aria-label="راهنما و اطلاعات" title="راهنما و اطلاعات"><span aria-hidden="true">ⓘ</span><span>راهنما</span></button></div></header>
+<button data-s="home" class="on"><b>🏠</b>خانه</button><button data-s="quest"><b>🎓</b>دوره‌ها</button><button data-s="shop"><b>🛒</b>فروشگاه</button>
+</nav><div class="header-actions"><button class="help" id="helpBtn" aria-label="راهنما و اطلاعات" title="راهنما و اطلاعات"><span aria-hidden="true">ⓘ</span><span>راهنما</span></button></div></header>
 <main>
 
 <section id="home" class="on">
@@ -20,7 +20,7 @@
 <span class="chip" style="background:#fff;color:var(--b)">آزمون سطح‌سنجی رایگان</span>
 <h1 style="margin-top:10px">آموزش تعاملی رباتیک برای <em>نسل جدید</em></h1>
 <p>ربات بساز، برنامه بنویس و با ویدیو و کلاس آنلاین یاد بگیر. اول سطحت را بسنج، بعد مسیر مناسب را انتخاب کن.</p>
-<div class="cta"><button class="btn" data-go="signup">ثبت‌نام و آزمون رایگان</button><button class="btn ghost" data-go="sim">امتحان شبیه‌ساز</button></div>
+<div class="cta"><button class="btn" data-go="signup">ثبت‌نام و آزمون رایگان</button><button class="btn ghost" data-go="quest">دیدن دوره‌ها</button></div>
 <div class="stats"><span>🎬 ویدیو در همهٔ پلن‌ها</span><span>👩‍🏫 کلاس آنلاین</span><span>🧰 کیت واقعی</span></div>
 </div>
 <div class="hero-logo"><img src="logo.jpg" alt="لوگوی امیرعلی رباتیک؛ رباتی خلاق در مسیر یادگیری" fetchpriority="high"></div>
@@ -30,36 +30,11 @@
 <div class="card"><div class="ico">📝</div><h3>۱. ثبت‌نام</h3><p>نام و شماره تماس، حدود ۱۰ ثانیه.</p></div>
 <div class="card"><div class="ico b">🧩</div><h3>۲. آزمون رایگان</h3><p>۶ سؤال چهارگزینه‌ای.</p></div>
 <div class="card"><div class="ico y">🎯</div><h3>۳. سطح تو</h3><p>نتیجه و پلن پیشنهادی.</p></div>
-<div class="card"><div class="ico p">🏆</div><h3>۴. شروع یادگیری</h3><p>ویدیو، شبیه‌ساز و ماموریت.</p></div>
+<div class="card"><div class="ico p">🏆</div><h3>۴. شروع یادگیری</h3><p>ویدیو، پروژه و ماموریت.</p></div>
 </div>
 <h2>پلن‌های آموزشی</h2>
 <div class="grid" id="hp"></div>
 <div class="band"><div><h3 style="font-size:20px">آماده‌ای؟ آزمون رایگان است</h3><p style="margin:0;color:#e3ebff">بعد از آزمون، پلن مناسب سطحت را می‌بینی.</p></div><button class="btn" data-go="signup">شروع آزمون رایگان</button></div>
-</section>
-
-<section id="sim">
-<h2 style="margin-top:6px">شبیه‌ساز ربات</h2>
-<div class="sim">
-<div class="stage">
-<svg viewBox="0 0 320 260" aria-label="بازوی رباتیک">
-<defs><pattern id="gr" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#7d93ff" stroke-opacity=".22"/></pattern></defs>
-<rect width="320" height="260" fill="url(#gr)"/>
-<polygon points="0,225 320,225 320,260 0,260" fill="#071236"/>
-<rect x="238" y="195" width="30" height="30" rx="6" fill="#ffc233"/>
-<rect x="122" y="205" width="76" height="20" rx="8" fill="#3a5bff"/>
-<g id="a1" transform="translate(160 205) rotate(0)"><rect x="-10" y="-80" width="20" height="86" rx="10" fill="#12c47a"/><circle r="12" fill="#ff3d8b"/>
-<g id="a2" transform="translate(0 -78) rotate(0)"><rect x="-9" y="-70" width="18" height="76" rx="9" fill="#12c47a"/><circle r="11" fill="#ff3d8b"/>
-<g transform="translate(0 -68)"><path id="claw" d="M-14 -4 L-14 -22 M14 -4 L14 -22 M-14 -4 H14" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none"/></g></g></g>
-</svg>
-</div>
-<div class="card">
-<h3>کنترل ربات</h3><p>ماموریت: مکعب زرد را بردار.</p>
-<label>پایه <input id="r1" type="range" min="-70" max="70" value="0"></label>
-<label>بازو <input id="r2" type="range" min="-100" max="100" value="0"></label>
-<label>گیره <input id="r3" type="range" min="0" max="100" value="50"></label>
-<div class="row" style="margin:14px 0"><span>وضعیت</span><span class="chip p" id="simst">در حال انجام</span></div>
-<button class="btn p" id="chk">بررسی حرکت</button> <button class="btn o" id="rst">بازنشانی</button>
-</div></div>
 </section>
 
 <section id="quest">
@@ -91,7 +66,7 @@
 </section>
 
 <section id="shop">
-<h2 style="margin-top:6px">فروشگاه</h2>
+<div class="shop-heading"><h2 style="margin-top:6px">فروشگاه</h2><button class="cart-toggle" id="cartBtn" aria-label="سبد خرید، ۰ کالا" aria-haspopup="dialog" aria-expanded="false"><span aria-hidden="true">🛒</span><span class="cart-label">سبد خرید</span><b class="cart-count" id="cartCount" aria-live="polite">۰</b></button></div>
 <div class="search-box"><span aria-hidden="true">🔍</span><input id="shopSearch" type="search" placeholder="جست‌وجو در کیت‌ها و دوره‌ها" aria-label="جست‌وجو در فروشگاه"><button type="button" id="clearSearch" aria-label="پاک‌کردن جست‌وجو" hidden>×</button></div>
 <div class="tabs"><button class="on" data-f="all">همه</button><button data-f="hw">کیت فیزیکی</button><button data-f="dg">دوره و محصول دیجیتال</button></div>
 <div class="grid" id="kits"></div>
@@ -132,7 +107,7 @@
 <button class="btn o" data-go="quest" style="margin-top:16px">فعلاً رد می‌کنم</button>
 </section>
 </main>
-<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><img src="logo.jpg" alt=""><div><b>امیرعلی رباتیک</b><p>با ساختن ربات، یادگیری را تجربه کن.</p></div></div><div class="footer-links"><button data-go="home">خانه</button><button data-go="sim">شبیه‌ساز</button><button data-go="quest">دوره‌ها</button><button data-go="shop">فروشگاه</button><button id="footerHelp">راهنما و اطلاعات</button></div><small>© امیرعلی رباتیک · آموزش خلاقانهٔ رباتیک</small></div></footer>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><img src="logo.jpg" alt=""><div><b>امیرعلی رباتیک</b><p>با ساختن ربات، یادگیری را تجربه کن.</p></div></div><div class="footer-links"><button data-go="home">خانه</button><button data-go="quest">دوره‌های هنرجو</button><button data-go="parent">داشبورد والدین</button><button data-go="shop">فروشگاه</button><button id="footerHelp">راهنما و اطلاعات</button></div><small>© امیرعلی رباتیک · آموزش خلاقانهٔ رباتیک</small></div></footer>
 <div class="cart-overlay" id="cartOverlay" aria-hidden="true"><section class="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1"><div class="cart-heading"><div><span class="cart-kicker">خریدهای تو</span><h2 id="cartTitle">سبد خرید</h2></div><button class="cart-close" id="cartClose" aria-label="بستن سبد خرید">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-empty" id="cartEmpty"><span>🛍️</span><b>سبدت هنوز خالی است</b><p>از فروشگاه یک کیت یا دوره انتخاب کن.</p><button class="btn" id="browseShop">رفتن به فروشگاه</button></div><div class="cart-summary" id="cartSummary" hidden><div><span>جمع کالاها</span><b id="cartTotal"></b></div><button class="btn p" id="checkoutBtn">ادامهٔ خرید</button><small>پرداخت آنلاین در نسخهٔ فعلی فعال نیست.</small></div></section></div>
 <div class="tour" id="tour" role="dialog" aria-modal="true" aria-label="راهنمای دکمه‌ها"><div class="card"><div class="ico" id="tI">🧭</div><h3 id="tT"></h3><p id="tD"></p><div class="row"><span id="tS" class="chip b"></span><span><button class="btn o" id="tX">بستن</button> <button class="btn" id="tN">بعدی</button></span></div></div></div>
 <div class="toast" id="toast" role="status"></div>

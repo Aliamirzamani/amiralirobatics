@@ -4,14 +4,10 @@ function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clea
 $$('nav button').forEach(b=>b.onclick=()=>show(b.dataset.s));
 $('#footerHelp').onclick=()=>tour(0);
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)show(g.dataset.go);const t=e.target.closest('[data-toast]');if(t)toast(t.dataset.toast)});
-function pose(){$('#a1').setAttribute('transform',`translate(160 205) rotate(${$('#r1').value})`);$('#a2').setAttribute('transform',`translate(0 -78) rotate(${$('#r2').value})`);const o=8+$('#r3').value/100*14;$('#claw').setAttribute('d',`M${-o} -4 L${-o} -22 M${o} -4 L${o} -22 M${-o} -4 H${o}`)}
-['r1','r2','r3'].forEach(i=>$('#'+i).oninput=pose);
-$('#rst').onclick=()=>{$('#r1').value=0;$('#r2').value=0;$('#r3').value=50;pose()};
-$('#chk').onclick=()=>{const ok=Math.abs($('#r1').value-40)<15&&$('#r3').value<30;$('#simst').textContent=ok?'کامل شد · ۵۰+ امتیاز':'دوباره امتحان کن';toast(ok?'آفرین! مکعب برداشته شد':'پایه را به راست بچرخان و گیره را ببند')};
 const C=[['رباتیک مقدماتی','جلسه ۶ از ۱۰',60,'','کلاس آنلاین: پنجشنبه ۱۷:۰۰'],['برنامه‌نویسی آردوینو','جلسه ۲ از ۸',25,'b','جلسهٔ بعد: ۱۲ مهر باز می‌شود']];
 $('#cs').innerHTML=C.map(c=>`<div class="card"><div class="ico ${c[3]}">🎓</div><h3>${c[0]}</h3><p>${c[1]}</p><div class="bar ${c[3]}"><i style="width:${c[2]}%"></i></div><div class="row"><span class="chip ${c[3]||''}">${c[4]}</span></div></div>`).join('');
 const Q=[['مسیریاب ماهر','ربات را از مسیر پرپیچ‌وخم عبور بده',70,'p','🧭'],['تکلیف سنسور نور','فایل پروژه را بارگذاری کن · مهلت: ۳ روز',35,'b','📎'],['رقص ربات','یک برنامه ۱۰ بلوکی بنویس',10,'','💃']];
-$('#qs').innerHTML=Q.map(q=>`<div class="card"><div class="ico ${q[3]}">${q[4]}</div><h3>${q[0]}</h3><p>${q[1]}</p><div class="bar ${q[3]}"><i style="width:${q[2]}%"></i></div><div class="row"><b>${q[2]}٪</b><button class="btn o" data-go="sim">ادامه</button></div></div>`).join('');
+$('#qs').innerHTML=Q.map(q=>`<div class="card"><div class="ico ${q[3]}">${q[4]}</div><h3>${q[0]}</h3><p>${q[1]}</p><div class="bar ${q[3]}"><i style="width:${q[2]}%"></i></div><div class="row"><b>${q[2]}٪</b><button class="btn o" data-go="quest">دیدن دوره‌ها</button></div></div>`).join('');
 const K=[
  {id:'robot-arm',name:'کیت بازوی رباتیک',icon:'🦾',price:1280000,type:'hw',color:'var(--gs)'},
  {id:'sensors',name:'کیت سنسورها',icon:'📡',price:890000,type:'hw',color:'var(--bs)'},
@@ -65,9 +61,9 @@ $('#qnext').onclick=()=>{if(st.qi<QZ.length-1){st.qi++;drawQ();return}
  $('#rI').textContent=L.i;$('#rL').textContent='سطح '+L.n;$('#rS').textContent=`${FA(sc)} از ${FA(QZ.length)}`;$('#rD').textContent=L.d;$('#rP').textContent='پلن '+PL[st.lvl].n+' '+PL[st.lvl].i;show('result')};
 const LV=[{n:'مبتدی',i:'🌱',d:'با مفاهیم پایه شروع می‌کنیم: قطعات، سنسور و اولین برنامه.'},{n:'متوسط',i:'🚀',d:'پایه را داری. وقت ساخت پروژه و برنامه‌نویسی شرط و حلقه است.'},{n:'پیشرفته',i:'🏆',d:'عالی! سراغ پروژه‌های سخت و مسابقه می‌رویم.'}];
 const PL=[
-{n:'برنز',i:'🥉',c:'#f3d9c2',p:'۴۹۰٬۰۰۰',s:'آموزش ویدیویی',f:['آموزش ویدیویی کامل','ماموریت‌ها و شبیه‌ساز','گزارش ماهانه برای والدین']},
-{n:'نقره',i:'🥈',c:'#e3e8f0',p:'۹۹۰٬۰۰۰',s:'ویدیو + ۲ جلسهٔ آنلاین',f:['آموزش ویدیویی کامل','۲ جلسهٔ آنلاین آموزش و رفع اشکال','ماموریت‌ها و شبیه‌ساز','گزارش هفتگی برای والدین']},
-{n:'طلا',i:'🥇',c:'#ffe9a8',p:'۱٬۷۹۰٬۰۰۰',s:'ویدیو + ۴ جلسهٔ آنلاین',f:['آموزش ویدیویی کامل','۴ جلسهٔ آنلاین آموزش و رفع اشکال','ماموریت‌ها و شبیه‌ساز','گزارش هفتگی برای والدین']}];
+{n:'برنز',i:'🥉',c:'#f3d9c2',p:'۴۹۰٬۰۰۰',s:'آموزش ویدیویی',f:['آموزش ویدیویی کامل','تمرین‌ها و ماموریت‌های آموزشی','گزارش ماهانه برای والدین']},
+{n:'نقره',i:'🥈',c:'#e3e8f0',p:'۹۹۰٬۰۰۰',s:'ویدیو + ۲ جلسهٔ آنلاین',f:['آموزش ویدیویی کامل','۲ جلسهٔ آنلاین آموزش و رفع اشکال','تمرین‌ها و ماموریت‌های آموزشی','گزارش هفتگی برای والدین']},
+{n:'طلا',i:'🥇',c:'#ffe9a8',p:'۱٬۷۹۰٬۰۰۰',s:'ویدیو + ۴ جلسهٔ آنلاین',f:['آموزش ویدیویی کامل','۴ جلسهٔ آنلاین آموزش و رفع اشکال','تمرین‌ها و ماموریت‌های آموزشی','گزارش هفتگی برای والدین']}];
 function drawPlans(){$('#pg').innerHTML=PL.map((p,i)=>`<div class="card plan ${st.lvl===i?'rec':''}">${st.lvl===i?'<span class="chip p">پیشنهاد ما برای تو</span>':''}<div class="row" style="justify-content:flex-start;gap:12px"><div class="medal" style="background:${p.c};margin:0">${p.i}</div><h3 style="font-size:20px">پلن ${p.n}</h3></div><p class="big" style="font-size:28px;margin:6px 0 0">${p.p} <small style="font-size:13px;font-weight:400">تومان / ماه</small></p><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn ${st.lvl===i?'p':'o'}" data-pick="${i}" style="width:100%">انتخاب پلن ${p.n}</button></div>`).join('')}
 drawPlans();
 const _s2=show;show=function(id){if(id==='plans')drawPlans();_s2(id)};
@@ -76,7 +72,7 @@ $('#pg').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;st.pla
  show('quest');toast('پلن '+PL[st.plan].n+' فعال شد');if(!localStorage_ok('seen'))setTimeout(()=>tour(0),600)};
 $('#result').addEventListener('click',()=>{if(st.lvl!==null){$('#lv').textContent=LV[st.lvl].n+' '+LV[st.lvl].i;$('#mineBtn').textContent='تغییر پلن';$('#mineBtn').dataset.go='plans'}});
 function localStorage_ok(k){try{if(localStorage.getItem(k))return true;localStorage.setItem(k,1)}catch(e){}return false}
-const TS=[['🧭','منوی بخش‌ها','از منوی صفحه به خانه، شبیه‌ساز، دوره‌ها، والدین و فروشگاه برو.'],['🛒','سبد خرید','کالاها را اضافه کن، تعدادشان را تغییر بده و جمع قیمت را ببین.'],['⌕','جست‌وجوی فروشگاه','نام کیت یا دوره را جست‌وجو کن یا دسته‌بندی را فیلتر کن.'],['ⓘ','راهنما و اطلاعات','هر وقت لازم داشتی، از دکمهٔ راهنما یا پیوند فوتر استفاده کن.']];
+const TS=[['🧭','منوی بخش‌ها','از منوی بالا به خانه، دوره‌ها و فروشگاه برو؛ داشبورد والدین در پیوند فوتر است.'],['🛒','سبد خرید','در فروشگاه کالاها را اضافه کن، تعدادشان را تغییر بده و جمع قیمت را ببین.'],['🔍','جست‌وجوی فروشگاه','نام کیت یا دوره را جست‌وجو کن یا دسته‌بندی را فیلتر کن.'],['ⓘ','راهنما و اطلاعات','هر وقت لازم داشتی، از دکمهٔ راهنما یا پیوند فوتر استفاده کن.']];
 let ti=0;function tour(i){ti=i;const t=TS[i];$('#tI').textContent=t[0];$('#tT').textContent=t[1];$('#tD').textContent=t[2];$('#tS').textContent=`${FA(i+1)} از ${FA(TS.length)}`;$('#tN').textContent=i==TS.length-1?'فهمیدم':'بعدی';$('#tour').classList.add('on');$('#tN').focus()}
 $('#tN').onclick=()=>ti<TS.length-1?tour(ti+1):$('#tour').classList.remove('on');
 $('#tX').onclick=()=>$('#tour').classList.remove('on');$('#helpBtn').onclick=()=>tour(0);
