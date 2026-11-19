@@ -11,7 +11,7 @@
 <header><div class="logo"><img src="logo.jpg" alt="نشان ربات امیرعلی رباتیک">امیرعلی رباتیک</div>
 <nav aria-label="بخش‌های اصلی">
 <button data-s="home" class="on"><b>🏠</b>خانه</button><button data-s="sim"><b>🕹️</b>شبیه‌ساز</button><button data-s="quest"><b>🎓</b>دوره‌ها</button><button data-s="parent"><b>👨‍👩‍👧</b>والدین</button><button data-s="shop"><b>🛒</b>فروشگاه</button>
-</nav><button class="help" id="helpBtn" aria-label="راهنمای دکمه‌ها">؟</button></header>
+</nav><div class="header-actions"><button class="cart-toggle" id="cartBtn" aria-label="سبد خرید، ۰ کالا" aria-haspopup="dialog" aria-expanded="false"><span aria-hidden="true">🛒</span><span class="cart-label">سبد خرید</span><b class="cart-count" id="cartCount" aria-live="polite">۰</b></button><button class="help" id="helpBtn" aria-label="راهنما و اطلاعات" title="راهنما و اطلاعات"><span aria-hidden="true">ⓘ</span><span>راهنما</span></button></div></header>
 <main>
 
 <section id="home" class="on">
@@ -92,9 +92,10 @@
 
 <section id="shop">
 <h2 style="margin-top:6px">فروشگاه</h2>
+<div class="search-box"><span aria-hidden="true">🔍</span><input id="shopSearch" type="search" placeholder="جست‌وجو در کیت‌ها و دوره‌ها" aria-label="جست‌وجو در فروشگاه"><button type="button" id="clearSearch" aria-label="پاک‌کردن جست‌وجو" hidden>×</button></div>
 <div class="tabs"><button class="on" data-f="all">همه</button><button data-f="hw">کیت فیزیکی</button><button data-f="dg">دوره و محصول دیجیتال</button></div>
 <div class="grid" id="kits"></div>
-<div class="card" style="margin-top:14px"><h3>پرداخت کارت‌به‌کارت</h3><p>بعد از واریز، عکس فیش را بارگذاری کن. سفارش بعد از تأیید مدیر فعال می‌شود.</p><button class="btn p" data-toast="فیش دریافت شد · در انتظار تأیید مدیر">بارگذاری فیش</button></div>
+<div class="card" style="margin-top:14px"><h3>خرید آنلاین</h3><p>می‌توانی کالاها را در سبد جمع کنی؛ پرداخت آنلاین به‌زودی فعال می‌شود.</p><button class="btn o" disabled>به‌زودی</button></div>
 </section>
 
 
@@ -131,6 +132,8 @@
 <button class="btn o" data-go="quest" style="margin-top:16px">فعلاً رد می‌کنم</button>
 </section>
 </main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><img src="logo.jpg" alt=""><div><b>امیرعلی رباتیک</b><p>با ساختن ربات، یادگیری را تجربه کن.</p></div></div><div class="footer-links"><button data-go="home">خانه</button><button data-go="sim">شبیه‌ساز</button><button data-go="quest">دوره‌ها</button><button data-go="shop">فروشگاه</button><button id="footerHelp">راهنما و اطلاعات</button></div><small>© امیرعلی رباتیک · آموزش خلاقانهٔ رباتیک</small></div></footer>
+<div class="cart-overlay" id="cartOverlay" aria-hidden="true"><section class="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1"><div class="cart-heading"><div><span class="cart-kicker">خریدهای تو</span><h2 id="cartTitle">سبد خرید</h2></div><button class="cart-close" id="cartClose" aria-label="بستن سبد خرید">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-empty" id="cartEmpty"><span>🛍️</span><b>سبدت هنوز خالی است</b><p>از فروشگاه یک کیت یا دوره انتخاب کن.</p><button class="btn" id="browseShop">رفتن به فروشگاه</button></div><div class="cart-summary" id="cartSummary" hidden><div><span>جمع کالاها</span><b id="cartTotal"></b></div><button class="btn p" id="checkoutBtn">ادامهٔ خرید</button><small>پرداخت آنلاین در نسخهٔ فعلی فعال نیست.</small></div></section></div>
 <div class="tour" id="tour" role="dialog" aria-modal="true" aria-label="راهنمای دکمه‌ها"><div class="card"><div class="ico" id="tI">🧭</div><h3 id="tT"></h3><p id="tD"></p><div class="row"><span id="tS" class="chip b"></span><span><button class="btn o" id="tX">بستن</button> <button class="btn" id="tN">بعدی</button></span></div></div></div>
 <div class="toast" id="toast" role="status"></div>
 <script src="app.js"></script>

@@ -2,6 +2,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 function show(id){$$('section').forEach(s=>s.classList.toggle('on',s.id===id));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.s===id));scrollTo(0,0)}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2300)}
 $$('nav button').forEach(b=>b.onclick=()=>show(b.dataset.s));
+$('#footerHelp').onclick=()=>tour(0);
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)show(g.dataset.go);const t=e.target.closest('[data-toast]');if(t)toast(t.dataset.toast)});
 function pose(){$('#a1').setAttribute('transform',`translate(160 205) rotate(${$('#r1').value})`);$('#a2').setAttribute('transform',`translate(0 -78) rotate(${$('#r2').value})`);const o=8+$('#r3').value/100*14;$('#claw').setAttribute('d',`M${-o} -4 L${-o} -22 M${o} -4 L${o} -22 M${-o} -4 H${o}`)}
 ['r1','r2','r3'].forEach(i=>$('#'+i).oninput=pose);
@@ -11,13 +12,33 @@ const C=[['رباتیک مقدماتی','جلسه ۶ از ۱۰',60,'','کلاس 
 $('#cs').innerHTML=C.map(c=>`<div class="card"><div class="ico ${c[3]}">🎓</div><h3>${c[0]}</h3><p>${c[1]}</p><div class="bar ${c[3]}"><i style="width:${c[2]}%"></i></div><div class="row"><span class="chip ${c[3]||''}">${c[4]}</span></div></div>`).join('');
 const Q=[['مسیریاب ماهر','ربات را از مسیر پرپیچ‌وخم عبور بده',70,'p','🧭'],['تکلیف سنسور نور','فایل پروژه را بارگذاری کن · مهلت: ۳ روز',35,'b','📎'],['رقص ربات','یک برنامه ۱۰ بلوکی بنویس',10,'','💃']];
 $('#qs').innerHTML=Q.map(q=>`<div class="card"><div class="ico ${q[3]}">${q[4]}</div><h3>${q[0]}</h3><p>${q[1]}</p><div class="bar ${q[3]}"><i style="width:${q[2]}%"></i></div><div class="row"><b>${q[2]}٪</b><button class="btn o" data-go="sim">ادامه</button></div></div>`).join('');
-const K=[['کیت بازوی رباتیک','🦾','۱٬۲۸۰٬۰۰۰','hw','var(--gs)'],['کیت سنسورها','📡','۸۹۰٬۰۰۰','hw','var(--bs)'],['دوره آردوینو (ویدیو)','💻','۶۹۰٬۰۰۰','dg','var(--ps)'],['پکیج پروژه‌های مسیریاب','📦','۳۹۰٬۰۰۰','dg','#fff1c9']];
-function kits(f){$('#kits').innerHTML=K.filter(k=>f=='all'||k[3]==f).map(k=>`<div class="card"><div class="kit" style="background:${k[4]}">${k[1]}</div><h3>${k[0]}</h3><p class="price">${k[2]} تومان</p><button class="btn p" data-toast="${k[0]} به سبد اضافه شد">افزودن به سبد</button></div>`).join('')}
-kits('all');
-$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));kits(b.dataset.f)});
+const K=[
+ {id:'robot-arm',name:'کیت بازوی رباتیک',icon:'🦾',price:1280000,type:'hw',color:'var(--gs)'},
+ {id:'sensors',name:'کیت سنسورها',icon:'📡',price:890000,type:'hw',color:'var(--bs)'},
+ {id:'arduino-video',name:'دوره آردوینو (ویدیو)',icon:'💻',price:690000,type:'dg',color:'var(--ps)'},
+ {id:'line-follower',name:'پکیج پروژه‌های مسیریاب',icon:'📦',price:390000,type:'dg',color:'#fff1c9'}
+];
+const money=n=>new Intl.NumberFormat('fa-IR').format(n)+' تومان';
+let selectedFilter='all';
+let cart=readCart();
+function readCart(){try{const saved=JSON.parse(localStorage.getItem('amirali-cart')||'[]');return Array.isArray(saved)?saved.filter(item=>K.some(product=>product.id===item.id)&&Number.isInteger(item.qty)&&item.qty>0&&item.qty<=20):[]}catch{return []}}
+function saveCart(){try{localStorage.setItem('amirali-cart',JSON.stringify(cart))}catch{}}
+function renderCart(){const count=cart.reduce((sum,item)=>sum+item.qty,0),total=cart.reduce((sum,item)=>sum+item.qty*K.find(product=>product.id===item.id).price,0);$('#cartCount').textContent=FA(count);$('#cartBtn').setAttribute('aria-label',`سبد خرید، ${FA(count)} کالا`);$('#cartEmpty').hidden=count>0;$('#cartSummary').hidden=count===0;$('#cartItems').innerHTML=cart.map(item=>{const product=K.find(entry=>entry.id===item.id);return `<article class="cart-item"><div class="cart-item-icon">${product.icon}</div><div class="cart-item-info"><b>${product.name}</b><span>${money(product.price)}</span><div class="quantity"><button data-cart-action="dec" data-id="${product.id}" aria-label="کم‌کردن ${product.name}">−</button><span>${FA(item.qty)}</span><button data-cart-action="inc" data-id="${product.id}" aria-label="زیادکردن ${product.name}">+</button><button class="remove-item" data-cart-action="remove" data-id="${product.id}">حذف</button></div></div></article>`}).join('');$('#cartTotal').textContent=money(total)}
+function addToCart(id){const item=cart.find(entry=>entry.id===id);if(item){if(item.qty>=20){toast('حداکثر ۲۰ عدد از هر کالا می‌توانی انتخاب کنی');return}item.qty++}else cart.push({id,qty:1});saveCart();renderCart();toast('کالا به سبد خرید اضافه شد')}
+function kits(){const query=$('#shopSearch').value.trim().toLocaleLowerCase('fa');const matches=K.filter(product=>(selectedFilter==='all'||product.type===selectedFilter)&&product.name.toLocaleLowerCase('fa').includes(query));$('#kits').innerHTML=matches.length?matches.map(product=>`<article class="card product-card"><div class="kit" style="background:${product.color}">${product.icon}</div><h3>${product.name}</h3><p class="price">${money(product.price)}</p><button class="btn p" data-add="${product.id}">افزودن به سبد</button></article>`).join(''):'<div class="empty-search">چیزی پیدا نشد؛ عبارت دیگری جست‌وجو کن.</div>';$('#clearSearch').hidden=!query}
+kits();renderCart();
+$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));selectedFilter=b.dataset.f;kits()});
+$('#shopSearch').oninput=kits;$('#clearSearch').onclick=()=>{$('#shopSearch').value='';kits();$('#shopSearch').focus()};
+$('#kits').onclick=e=>{const button=e.target.closest('[data-add]');if(button)addToCart(button.dataset.add)};
+$('#cartBtn').onclick=()=>{renderCart();$('#cartOverlay').classList.add('open');$('#cartOverlay').setAttribute('aria-hidden','false');$('#cartBtn').setAttribute('aria-expanded','true');$('#cartClose').focus()};
+function closeCart(){$('#cartOverlay').classList.remove('open');$('#cartOverlay').setAttribute('aria-hidden','true');$('#cartBtn').setAttribute('aria-expanded','false');$('#cartBtn').focus()}
+$('#cartClose').onclick=closeCart;$('#cartOverlay').onclick=e=>{if(e.target===$('#cartOverlay'))closeCart()};
+$('#cartItems').onclick=e=>{const button=e.target.closest('[data-cart-action]');if(!button)return;const item=cart.find(entry=>entry.id===button.dataset.id);if(!item)return;if(button.dataset.cartAction==='inc'&&item.qty<20)item.qty++;if(button.dataset.cartAction==='dec')item.qty--;if(button.dataset.cartAction==='remove'||item.qty<=0)cart=cart.filter(entry=>entry.id!==button.dataset.id);saveCart();renderCart()};
+$('#browseShop').onclick=()=>{closeCart();show('shop')};$('#checkoutBtn').onclick=()=>toast('پرداخت آنلاین هنوز فعال نشده است');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#cartOverlay').classList.contains('open'))closeCart()});
 
 const P=n=>String(n).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-const FA=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+function FA(n){return String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])}
 const st={name:'',phone:'',qi:0,ans:[],lvl:null,plan:null};
 const FLOW=['signup','quiz','result','plans'];
 const _show=show;
@@ -55,7 +76,7 @@ $('#pg').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;st.pla
  show('quest');toast('پلن '+PL[st.plan].n+' فعال شد');if(!localStorage_ok('seen'))setTimeout(()=>tour(0),600)};
 $('#result').addEventListener('click',()=>{if(st.lvl!==null){$('#lv').textContent=LV[st.lvl].n+' '+LV[st.lvl].i;$('#mineBtn').textContent='تغییر پلن';$('#mineBtn').dataset.go='plans'}});
 function localStorage_ok(k){try{if(localStorage.getItem(k))return true;localStorage.setItem(k,1)}catch(e){}return false}
-const TS=[['🧭','نوار پایین: بخش‌های اصلی','با پنج دکمهٔ پایین صفحه بین خانه، شبیه‌ساز، دوره‌ها، والدین و فروشگاه جابه‌جا شو.'],['🕹️','شبیه‌ساز: لغزنده‌ها','لغزنده‌ها ربات را حرکت می‌دهند. بعد «بررسی حرکت» را بزن تا امتیاز بگیری.'],['🎓','دوره‌ها: ادامه بده','هر دوره و تکلیف دکمهٔ «ادامه» دارد. با دکمهٔ «تغییر پلن» پلن‌ات را عوض کن.'],['❓','دکمهٔ ؟ بالای صفحه','هر وقت گیج شدی، این دکمه راهنما را دوباره باز می‌کند.']];
+const TS=[['🧭','منوی بخش‌ها','از منوی صفحه به خانه، شبیه‌ساز، دوره‌ها، والدین و فروشگاه برو.'],['🛒','سبد خرید','کالاها را اضافه کن، تعدادشان را تغییر بده و جمع قیمت را ببین.'],['⌕','جست‌وجوی فروشگاه','نام کیت یا دوره را جست‌وجو کن یا دسته‌بندی را فیلتر کن.'],['ⓘ','راهنما و اطلاعات','هر وقت لازم داشتی، از دکمهٔ راهنما یا پیوند فوتر استفاده کن.']];
 let ti=0;function tour(i){ti=i;const t=TS[i];$('#tI').textContent=t[0];$('#tT').textContent=t[1];$('#tD').textContent=t[2];$('#tS').textContent=`${FA(i+1)} از ${FA(TS.length)}`;$('#tN').textContent=i==TS.length-1?'فهمیدم':'بعدی';$('#tour').classList.add('on');$('#tN').focus()}
 $('#tN').onclick=()=>ti<TS.length-1?tour(ti+1):$('#tour').classList.remove('on');
 $('#tX').onclick=()=>$('#tour').classList.remove('on');$('#helpBtn').onclick=()=>tour(0);
