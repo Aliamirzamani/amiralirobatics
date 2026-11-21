@@ -78,3 +78,16 @@ $('#tN').onclick=()=>ti<TS.length-1?tour(ti+1):$('#tour').classList.remove('on')
 $('#tX').onclick=()=>$('#tour').classList.remove('on');$('#helpBtn').onclick=()=>tour(0);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#tour').classList.remove('on')});
 $('#hp').innerHTML=PL.map(p=>`<div class="card hp" data-go="signup"><div class="medal" style="background:${p.c}">${p.i}</div><h3>پلن ${p.n}</h3><p class="price" style="margin:0">${p.p} تومان / ماه</p><p style="margin:4px 0 0">${p.s}</p></div>`).join('');
+
+async function loadPublishedCourses(){
+ try{
+  const response=await fetch('/api/courses',{cache:'no-store'});
+  if(!response.ok)return;
+  const {courses=[]}=await response.json();
+  if(!courses.length)return;
+  $('#publicCourses').innerHTML=courses.map(course=>`<article class="card"><span class="chip b">${escapeCourseText(course.level)}</span><h3>${escapeCourseText(course.title)}</h3><p>${escapeCourseText(course.description||'اطلاعات بیشتر به‌زودی اضافه می‌شود.')}</p></article>`).join('');
+  $('#publicCourseBlock').hidden=false;
+ }catch{}
+}
+function escapeCourseText(value){return String(value).replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]))}
+loadPublishedCourses();

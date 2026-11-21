@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS courses (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL CHECK (length(title) BETWEEN 2 AND 120),
+  description TEXT NOT NULL DEFAULT '' CHECK (length(description) <= 1000),
+  level TEXT NOT NULL DEFAULT 'مقدماتی' CHECK (length(level) <= 40),
+  published INTEGER NOT NULL DEFAULT 0 CHECK (published IN (0, 1)),
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
