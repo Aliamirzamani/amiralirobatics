@@ -72,7 +72,7 @@ $('#pg').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;st.pla
  show('plans');toast('پلن انتخاب شد؛ برای فعال‌سازی باید پرداخت آنلاین راه‌اندازی شود')};
 $('#result').addEventListener('click',()=>{if(st.lvl!==null){$('#lv').textContent=LV[st.lvl].n+' '+LV[st.lvl].i;$('#mineBtn').textContent='تغییر پلن';$('#mineBtn').dataset.go='plans'}});
 function localStorage_ok(k){try{if(localStorage.getItem(k))return true;localStorage.setItem(k,1)}catch(e){}return false}
-const TS=[['🧭','منوی بخش‌ها','از منوی بالا به خانه، دوره‌ها و فروشگاه برو؛ داشبورد والدین در پیوند فوتر است.'],['🛒','سبد خرید','در فروشگاه کالاها را اضافه کن، تعدادشان را تغییر بده و جمع قیمت را ببین.'],['🔍','جست‌وجوی فروشگاه','نام کیت یا دوره را جست‌وجو کن یا دسته‌بندی را فیلتر کن.'],['ⓘ','راهنما و اطلاعات','هر وقت لازم داشتی، از دکمهٔ راهنما یا پیوند فوتر استفاده کن.']];
+const TS=[['🧭','منوی بخش‌ها','از منوی بالا به خانه، دوره‌ها، مقاله‌ها و پروژه‌ها برو؛ درباره و تماس هم در یک بخش هستند.'],['🛒','سبد خرید','در فروشگاه کالاها را اضافه کن، تعدادشان را تغییر بده و جمع قیمت را ببین.'],['🔍','جست‌وجوی فروشگاه','نام کیت یا دوره را جست‌وجو کن یا دسته‌بندی را فیلتر کن.'],['ⓘ','راهنما و اطلاعات','هر وقت لازم داشتی، از دکمهٔ راهنما یا پیوند فوتر استفاده کن.']];
 let ti=0;function tour(i){ti=i;const t=TS[i];$('#tI').textContent=t[0];$('#tT').textContent=t[1];$('#tD').textContent=t[2];$('#tS').textContent=`${FA(i+1)} از ${FA(TS.length)}`;$('#tN').textContent=i==TS.length-1?'فهمیدم':'بعدی';$('#tour').classList.add('on');$('#tN').focus()}
 $('#tN').onclick=()=>ti<TS.length-1?tour(ti+1):$('#tour').classList.remove('on');
 $('#tX').onclick=()=>$('#tour').classList.remove('on');$('#helpBtn').onclick=()=>tour(0);
@@ -85,7 +85,9 @@ async function loadPublishedCourses(){
   if(!response.ok)return;
   const {courses=[]}=await response.json();
   if(!courses.length)return;
-  $('#publicCourses').innerHTML=courses.map(course=>`<article class="card"><span class="chip b">${escapeCourseText(course.level)}</span><h3>${escapeCourseText(course.title)}</h3><p>${escapeCourseText(course.description||'اطلاعات بیشتر به‌زودی اضافه می‌شود.')}</p></article>`).join('');
+  const courseCards=courses.map(course=>`<article class="card course-card"><div class="ico b">⚙️</div><span class="chip b">${escapeCourseText(course.level||'مقدماتی')}</span><h2>${escapeCourseText(course.title)}</h2><p>${escapeCourseText(course.description||'اطلاعات بیشتر به‌زودی اضافه می‌شود.')}</p></article>`).join('');
+  $('#publicCourses').innerHTML=courseCards;
+  $('#courseCatalog').innerHTML=courseCards;
   $('#publicCourseBlock').hidden=false;
  }catch{}
 }
