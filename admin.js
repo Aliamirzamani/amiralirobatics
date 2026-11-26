@@ -9,6 +9,151 @@ const listError = document.querySelector('#listError');
 const courseList = document.querySelector('#adminCourses');
 const saveCourseButton = document.querySelector('#saveCourse');
 const cancelCourseEdit = document.querySelector('#cancelCourseEdit');
+const assignmentCards = document.querySelector('#assignmentCards');
+const assignmentPicker = document.querySelector('#assignmentPicker');
+const assignmentDialog = document.querySelector('#assignmentDialog');
+const assignmentContent = document.querySelector('#assignmentContent');
+const assignmentDialogTitle = document.querySelector('#assignmentDialogTitle');
+const assignmentFileList = document.querySelector('#assignmentFileList');
+const addAssignmentFiles = document.querySelector('#addAssignmentFiles');
+const backToAssignmentFiles = document.querySelector('#backToAssignmentFiles');
+const assignmentNames = { marketing: 'مارکتینگ پلن', 'mini-course': 'طراحی مینی‌دوره', business: 'بیزینس پلن', 'business-model': 'بوم مدل کسب‌وکار · پاورپوینت' };
+let pendingAssignmentId = '';
+let activeAssignmentId = '';
+
+function openAssignmentDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('amirali-admin-assignments', 1);
+    request.onupgradeneeded = () => request.result.createObjectStore('files');
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function getAssignmentFiles(assignmentId) {
+  const database = await openAssignmentDatabase();
+  return new Promise((resolve, reject) => {
+    const transaction = database.transaction('files', 'readonly');
+    const request = transaction.objectStore('files').get(assignmentId);
+    transaction.oncomplete = () => { database.close(); resolve(request.result || []); };
+    transaction.onerror = () => { database.close(); reject(transaction.error); };
+  });
+}
+
+async function saveAssignmentFiles(assignmentId, files) {
+  const database = await openAssignmentDatabase();
+  return new Promise((resolve, reject) => {
+    const transaction = database.transaction('files', 'readwrite');
+    transaction.objectStore('files').put(files, assignmentId);
+    transaction.oncomplete = () => { database.close(); resolve(); };
+    transaction.onerror = () => { database.close(); reject(transaction.error); };
+  });
+}
+
+async function updateAssignmentStatus(assignmentId) {
+  const status = document.querySelector(`[data-assignment-status="${assignmentId}"]`);
+  if (!status) return;
+  try {
+    const files = await getAssignmentFiles(assignmentId);
+    status.textContent = files.length ? `${files.length} فایل آمادهٔ بازکردن` : 'هنوز فایلی اضافه نشده';
+  } catch {
+    status.textContent = 'ذخیره‌سازی این مرورگر در دسترس نیست';
+  }
+}
+
+function showAssignment(assignmentId) {
+  assignmentDialogTitle.textContent = assignmentNames[assignmentId];
+  assignmentContent.hidden = true;
+  assignmentFileList.hidden = false;
+  backToAssignmentFiles.hidden = true;
+  activeAssignmentId = assignmentId;
+  renderAssignmentFiles(assignmentId);
+  assignmentDialog.showModal();
+}
+
+async function renderAssignmentFiles(assignmentId) {
+  assignmentFileList.replaceChildren();
+  const files = await getAssignmentFiles(assignmentId);
+  if (!files.length) {
+    const empty = document.createElement('div');
+    empty.className = 'assignment-empty';
+    empty.textContent = 'هنوز فایلی برای این تکلیف اضافه نکرده‌ای.';
+    assignmentFileList.append(empty);
+    return;
+  }
+  files.forEach((file, index) => {
+    const row = document.createElement('div');
+    row.className = 'assignment-file-entry';
+    const details = document.createElement('div');
+    const name = document.createElement('strong');
+    name.textContent = file.name;
+    const meta = document.createElement('span');
+    meta.textContent = `${(file.size / 1024).toFixed(0)} کیلوبایت · ${file.type || 'فایل'}`;
+    const openButton = document.createElement('button');
+    openButton.className = 'btn o';
+    openButton.type = 'button';
+    openButton.textContent = file.name.toLowerCase().endsWith('.txt') ? 'خواندن تکلیف' : 'دریافت / بازکردن';
+    openButton.addEventListener('click', () => openAssignmentFile(assignmentId, index));
+    details.append(name, document.createElement('br'), meta);
+    row.append(details, openButton);
+    assignmentFileList.append(row);
+  });
+}
+
+assignmentCards.addEventListener('click', event => {
+  const card = event.target.closest('[data-assignment]');
+  if (!card) return;
+  showAssignment(card.dataset.assignment);
+});
+
+assignmentPicker.addEventListener('change', async () => {
+  if (!assignmentPicker.files.length || !pendingAssignmentId) return;
+  try {
+    const existingFiles = await getAssignmentFiles(pendingAssignmentId);
+    await saveAssignmentFiles(pendingAssignmentId, [...existingFiles, ...Array.from(assignmentPicker.files)]);
+    await updateAssignmentStatus(pendingAssignmentId);
+    if (assignmentDialog.open) await renderAssignmentFiles(pendingAssignmentId);
+  } catch {
+    window.alert('ذخیرهٔ فایل در همین مرورگر انجام نشد. فضای ذخیره‌سازی را بررسی کن و دوباره تلاش کن.');
+  }
+  pendingAssignmentId = '';
+  assignmentPicker.value = '';
+});
+
+document.querySelector('#closeAssignment').addEventListener('click', () => assignmentDialog.close());
+addAssignmentFiles.addEventListener('click', () => {
+  pendingAssignmentId = activeAssignmentId;
+  assignmentPicker.value = '';
+  assignmentPicker.click();
+});
+backToAssignmentFiles.addEventListener('click', () => {
+  assignmentContent.hidden = true;
+  assignmentFileList.hidden = false;
+  backToAssignmentFiles.hidden = true;
+});
+
+async function openAssignmentFile(assignmentId, fileIndex) {
+  const files = await getAssignmentFiles(assignmentId);
+  const file = files[fileIndex];
+  if (!file) return;
+  if (file.name.toLowerCase().endsWith('.txt')) {
+    assignmentContent.textContent = await file.text();
+    assignmentContent.hidden = false;
+    assignmentFileList.hidden = true;
+    backToAssignmentFiles.hidden = false;
+    return;
+  }
+  const url = URL.createObjectURL(file);
+  const download = document.createElement('a');
+  download.href = url;
+  download.download = file.name;
+  document.body.append(download);
+  download.click();
+  download.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+Object.keys(assignmentNames).forEach(assignmentId => updateAssignmentStatus(assignmentId));
 
 async function checkSession() {
   try {

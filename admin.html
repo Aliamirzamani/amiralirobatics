@@ -27,8 +27,21 @@
 <form id="courseForm"><input type="hidden" id="courseId"><label for="courseTitle">عنوان دوره</label><input id="courseTitle" maxlength="120" required placeholder="مثلاً رباتیک مقدماتی"><label for="courseDescription">توضیحات</label><textarea id="courseDescription" maxlength="1000" rows="3" placeholder="هنرجو در این دوره چه چیزهایی یاد می‌گیرد؟"></textarea><label for="courseLevel">سطح</label><select id="courseLevel"><option>مقدماتی</option><option>متوسط</option><option>پیشرفته</option></select><label class="admin-publish"><input type="checkbox" id="coursePublished"> انتشار دوره</label><p class="admin-error" id="courseError" role="alert"></p><div class="admin-form-actions"><button class="btn" id="saveCourse" type="submit">ذخیرهٔ دوره</button><button class="btn o" id="cancelCourseEdit" type="button" hidden>لغو ویرایش</button></div></form></div>
 <div class="admin-course-list"><div class="admin-section-heading"><div><span class="chip">فهرست دوره‌ها</span><h2>دوره‌های ثبت‌شده</h2></div><button class="btn o" id="refreshCourses" type="button">به‌روزرسانی</button></div><p class="admin-error" id="listError" role="status"></p><div class="admin-courses" id="adminCourses" aria-live="polite"></div></div>
 </div>
+<section class="admin-assignments" aria-labelledby="assignmentTitle">
+<div class="admin-section-heading"><div><span class="chip b">بخش موقت مدیر</span><h2 id="assignmentTitle">دریای تکلیف‌ها</h2><p>روی قایق هر تکلیف بزن تا فایل‌هایش را ببینی؛ می‌توانی پاورپوینت و فایل‌های دیگر را هم اضافه کنی.</p></div></div>
+<div class="assignment-sea" id="assignmentCards">
+<button class="assignment-boat" type="button" data-assignment="marketing"><span class="assignment-boat-label">مارکتینگ پلن</span><span class="assignment-boat-art" aria-hidden="true">⛵</span><span class="assignment-boat-status" data-assignment-status="marketing">هنوز فایلی اضافه نشده</span></button>
+<button class="assignment-boat" type="button" data-assignment="mini-course"><span class="assignment-boat-label">طراحی مینی‌دوره</span><span class="assignment-boat-art" aria-hidden="true">⛵</span><span class="assignment-boat-status" data-assignment-status="mini-course">هنوز فایلی اضافه نشده</span></button>
+<button class="assignment-boat" type="button" data-assignment="business"><span class="assignment-boat-label">بیزینس پلن</span><span class="assignment-boat-art" aria-hidden="true">⛵</span><span class="assignment-boat-status" data-assignment-status="business">هنوز فایلی اضافه نشده</span></button>
+<button class="assignment-boat" type="button" data-assignment="business-model"><span class="assignment-boat-label">بوم مدل کسب‌وکار · پاورپوینت</span><span class="assignment-boat-art" aria-hidden="true">⛵</span><span class="assignment-boat-status" data-assignment-status="business-model">هنوز فایلی اضافه نشده</span></button>
+<span class="assignment-wave assignment-wave-one" aria-hidden="true"></span><span class="assignment-wave assignment-wave-two" aria-hidden="true"></span>
+</div>
+<p class="assignment-storage-note">فایل‌ها فقط در مرورگر همین دستگاه ذخیره می‌شوند و به سایت عمومی فرستاده نمی‌شوند.</p>
+<input id="assignmentPicker" class="admin-file-picker" type="file" multiple accept=".txt,.pdf,.ppt,.pptx,.doc,.docx,.png,.jpg,.jpeg,.xlsx,.csv,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation" aria-label="انتخاب فایل‌های تکلیف">
+</section>
 </section>
 </main>
+<dialog class="admin-assignment-dialog" id="assignmentDialog" aria-labelledby="assignmentDialogTitle"><div class="admin-assignment-dialog-head"><div><span class="chip b">فایل‌های این تکلیف</span><h2 id="assignmentDialogTitle">تکلیف</h2></div><button class="btn o" id="closeAssignment" type="button">بستن</button></div><p class="assignment-dialog-note">فایل متنی را داخل مرورگر بخوان؛ فایل‌های پاورپوینت، ورد و PDF را دریافت کن و با برنامهٔ مربوط باز کن.</p><div class="assignment-file-list" id="assignmentFileList"></div><pre id="assignmentContent" dir="rtl" hidden></pre><div class="admin-assignment-dialog-actions"><button class="btn" id="addAssignmentFiles" type="button">افزودن فایل به این قایق</button><button class="btn o" id="backToAssignmentFiles" type="button" hidden>بازگشت به فایل‌ها</button></div></dialog>
 <script src="admin.js" defer></script>
 </body>
 </html>
